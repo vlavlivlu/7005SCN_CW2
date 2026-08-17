@@ -116,7 +116,16 @@ with tab1:
         with col:
             st.markdown(f"**{model_name}**")
             fig, ax = plt.subplots(figsize=(4,4))
-            sb.heatmap(metrics["Confusion Matrix"],annot=True,fmt="d",cmap="Blues",ax=ax)
+
+            num_classes = metrics["Confusion Matrix"].shape[0]
+            if num_classes > 2:
+                class_labels = list(range(1, num_classes + 1))
+            else:
+                class_labels = list(range(num_classes))
+
+            sb.heatmap(metrics["Confusion Matrix"],annot=True,fmt="d",cmap="Blues",xticklabels=class_labels, yticklabels=class_labels, ax=ax)
+            ax.set_xlabel("Predicted")
+            ax.set_ylabel("Actual")
             st.pyplot(fig)
             plt.close(fig)
 
@@ -241,8 +250,15 @@ with tab2:
     for col, dataset_name in zip([col1, col2], ["Medical", "Fake News"]):
         with col:
             cm = evaluation_results[dataset_name][model]["Confusion Matrix"]
+            num_classes = cm.shape[0]
+            if num_classes > 2:
+                class_labels = list(range(1, num_classes + 1))
+            else:
+                class_labels = list(range(num_classes))
+
             fig, ax = plt.subplots(figsize=(4,4))
-            sb.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+
+            sb.heatmap(cm, annot=True, fmt="d", cmap="Blues", xticklabels=class_labels, yticklabels=class_labels, ax=ax)
             ax.set_xlabel("Predicted")
             ax.set_ylabel("Actual")
             st.pyplot(fig)

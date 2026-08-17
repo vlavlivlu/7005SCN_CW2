@@ -118,8 +118,6 @@ def run_pipeline():
         },
         "evaluation_results": evaluation_results, 
         "shap_results": shap_results
-        #"processed_datasets": processed_datasets,
-        #"trained_models": trained_models, 
     }
 
     # Save the complete results

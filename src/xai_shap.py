@@ -19,22 +19,6 @@ def generate_shap(model, X_train, X_test):
 
     print(f"{type(model).__name__} SHAP Generated")
     print("*" * 50)
-    print(X_train.shape)
-    print(type(model).__name__)
-    print(type(shap_values))
-
-    if isinstance(shap_values, np.ndarray):
-        print(shap_values.shape)
-        print(shap_values.min())
-        print(shap_values.max())
-        print(shap_values.mean())
-
-    elif hasattr(shap_values, "values"):
-        print(shap_values.values.shape)
-        print(shap_values.values.min())
-        print(shap_values.values.max())
-        print(shap_values.values.mean())
-    print("*" * 50)
     
     results = {
         #"Explainer": explainer, 

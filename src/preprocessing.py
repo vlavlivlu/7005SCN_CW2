@@ -18,7 +18,6 @@ def preprocessing_text(df, text_column):
     # Remove extra whitespace 
     df[text_column] = df[text_column].str.replace(r'\s+', ' ', regex=True).str.strip()
     
-    # Remove stopwords & Lemmatization (OPTIONAL)
-
     print("Data Preprocessing Completed!")
     return df
+
